@@ -1,14 +1,165 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+  <title>로또 번호 추천기</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #f3f4f6, #dbeafe);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 90%;
+      max-width: 700px;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      color: #1d4ed8;
+    }
+
+    p {
+      color: #555;
+      margin-bottom: 25px;
+    }
+
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 14px 24px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #1e40af;
+    }
+
+    #numbers {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .set-box {
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .set-title {
+      font-weight: bold;
+      margin-bottom: 12px;
+      color: #374151;
+    }
+
+    .ball-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .ball {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 18px;
+      color: #222;
+    }
+
+    .yellow { background: #fde68a; }
+    .blue { background: #93c5fd; }
+    .red { background: #fca5a5; }
+    .gray { background: #d1d5db; }
+    .green { background: #86efac; }
+  </style>
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+  <div class="container">
+    <h1>🎰 로또 번호 추천기</h1>
+    <p>버튼을 누르면 로또 번호 5세트를 추천해줘.</p>
+    <button onclick="generateLottoSets()">번호 추천받기</button>
+
+    <div id="numbers"></div>
+  </div>
+
+  <script>
+    function getColorClass(number) {
+      if (number <= 10) return "yellow";
+      if (number <= 20) return "blue";
+      if (number <= 30) return "red";
+      if (number <= 40) return "gray";
+      return "green";
+    }
+
+    function generateOneSet() {
+      const numbers = [];
+
+      while (numbers.length < 6) {
+        const random = Math.floor(Math.random() * 45) + 1;
+        if (!numbers.includes(random)) {
+          numbers.push(random);
+        }
+      }
+
+      return numbers.sort((a, b) => a - b);
+    }
+
+    function generateLottoSets() {
+      const numbersDiv = document.getElementById("numbers");
+      numbersDiv.innerHTML = "";
+
+      for (let i = 1; i <= 5; i++) {
+        const set = generateOneSet();
+
+        const setBox = document.createElement("div");
+        setBox.className = "set-box";
+
+        const setTitle = document.createElement("div");
+        setTitle.className = "set-title";
+        setTitle.textContent = i + "번 추천 번호";
+
+        const ballRow = document.createElement("div");
+        ballRow.className = "ball-row";
+
+        set.forEach((num) => {
+          const ball = document.createElement("div");
+          ball.className = "ball " + getColorClass(num);
+          ball.textContent = num;
+          ballRow.appendChild(ball);
+        });
+
+        setBox.appendChild(setTitle);
+        setBox.appendChild(ballRow);
+        numbersDiv.appendChild(setBox);
+      }
+    }
+  </script>
 </body>
 </html>
