@@ -1,1 +1,139 @@
-/* Add styles here */
+:root {
+  --bg-gradient: linear-gradient(135deg, #f3f4f6, #dbeafe);
+  --container-bg: white;
+  --text-primary: #1d4ed8;
+  --text-secondary: #555;
+  --button-bg: #2563eb;
+  --button-hover: #1e40af;
+  --set-bg: #f8fafc;
+  --set-border: #e5e7eb;
+  --set-title: #374151;
+  --ball-text: #222;
+}
+
+[data-theme="dark"] {
+  --bg-gradient: linear-gradient(135deg, #111827, #1f2937);
+  --container-bg: #1f2937;
+  --text-primary: #60a5fa;
+  --text-secondary: #9ca3af;
+  --button-bg: #3b82f6;
+  --button-hover: #2563eb;
+  --set-bg: #374151;
+  --set-border: #4b5563;
+  --set-title: #f3f4f6;
+  --ball-text: #111827;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg-gradient);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  transition: background 0.3s ease;
+}
+
+.container {
+  background: var(--container-bg);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 90%;
+  max-width: 700px;
+  transition: background 0.3s ease;
+  position: relative;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: 1px solid var(--set-border);
+  color: var(--text-secondary);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.theme-toggle:hover {
+  background: var(--set-bg);
+}
+
+h1 {
+  margin-bottom: 10px;
+  color: var(--text-primary);
+}
+
+p {
+  color: var(--text-secondary);
+  margin-bottom: 25px;
+}
+
+button {
+  background: var(--button-bg);
+  color: white;
+  border: none;
+  padding: 14px 24px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: var(--button-hover);
+}
+
+#numbers {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.set-box {
+  background: var(--set-bg);
+  border: 1px solid var(--set-border);
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.set-title {
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: var(--set-title);
+}
+
+.ball-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ball {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+  color: var(--ball-text);
+}
+
+.yellow { background: #fde68a; }
+.blue { background: #93c5fd; }
+.red { background: #fca5a5; }
+.gray { background: #d1d5db; }
+.green { background: #86efac; }
