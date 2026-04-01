@@ -37,6 +37,7 @@ body {
   align-items: center;
   min-height: 100vh;
   transition: background 0.3s ease;
+  padding: 20px 0;
 }
 
 .container {
@@ -49,13 +50,41 @@ body {
   max-width: 700px;
   transition: background 0.3s ease;
   position: relative;
-  margin: 20px 0;
+  margin: 20px auto;
+}
+
+.header-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-btn {
+  background: var(--set-bg);
+  border: 1px solid var(--set-border);
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.nav-btn.active {
+  background: var(--button-bg);
+  color: white;
+  border-color: var(--button-bg);
 }
 
 .theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
   background: none;
   border: 1px solid var(--set-border);
   color: var(--text-secondary);
@@ -65,8 +94,9 @@ body {
   font-size: 14px;
 }
 
-.theme-toggle:hover {
+.theme-toggle:hover, .nav-btn:hover:not(.active) {
   background: var(--set-bg);
+  filter: brightness(0.9);
 }
 
 h1 {
@@ -94,6 +124,7 @@ button:hover {
   background: var(--button-hover);
 }
 
+/* Lotto Styles */
 #numbers {
   margin-top: 30px;
   display: flex;
@@ -139,6 +170,36 @@ button:hover {
 .gray { background: #d1d5db; }
 .green { background: #86efac; }
 
+/* Teachable Machine Styles */
+#webcam-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+#webcam-container canvas {
+  border-radius: 14px;
+  border: 2px solid var(--set-border);
+}
+
+#label-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.label-item {
+  background: var(--set-bg);
+  border: 1px solid var(--set-border);
+  border-radius: 10px;
+  padding: 12px;
+  color: var(--set-title);
+  font-weight: bold;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
 /* Form Styles */
 .divider {
   margin: 40px 0;
@@ -148,19 +209,6 @@ button:hover {
 
 .form-container {
   text-align: left;
-  margin-top: 20px;
-}
-
-.form-container h2 {
-  color: var(--text-primary);
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.form-container p {
-  text-align: center;
-  font-size: 14px;
-  margin-bottom: 30px;
 }
 
 .form-group {
@@ -172,28 +220,17 @@ button:hover {
   margin-bottom: 8px;
   font-weight: bold;
   color: var(--set-title);
-  font-size: 14px;
 }
 
-.form-group input,
-.form-group textarea {
+.form-group input, .form-group textarea {
   width: 100%;
   padding: 12px;
   border: 1px solid var(--set-border);
   border-radius: 8px;
   background: var(--set-bg);
   color: var(--set-title);
-  font-size: 15px;
-  transition: border-color 0.2s;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--button-bg);
 }
 
 .submit-btn {
   width: 100%;
-  margin-top: 10px;
 }

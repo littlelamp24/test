@@ -3,17 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>로또 번호 추천기</title>
+  <title>멀티 서비스 (로또 & 동물상)</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
 </head>
 <body>
   <div class="container">
-    <button class="theme-toggle" onclick="toggleTheme()">🌙 다크 모드</button>
-    <h1>🎰 로또 번호 추천기</h1>
-    <p>버튼을 누르면 로또 번호 5세트를 추천해줘.</p>
-    <button onclick="generateLottoSets()">번호 추천받기</button>
+    <div class="header-controls">
+      <div class="nav-tabs">
+        <button class="nav-btn active" onclick="switchMode('lotto')">🎰 로또 추천</button>
+        <button class="nav-btn" onclick="switchMode('animal')">🐶 동물상 테스트</button>
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()">🌙 다크 모드</button>
+    </div>
 
-    <div id="numbers"></div>
+    <!-- 로또 섹션 -->
+    <div id="lotto-section" class="mode-section">
+      <h1>🎰 로또 번호 추천기</h1>
+      <p>버튼을 누르면 로또 번호 5세트를 추천해줘.</p>
+      <button onclick="generateLottoSets()">번호 추천받기</button>
+      <div id="numbers"></div>
+    </div>
+
+    <!-- 동물상 섹션 -->
+    <div id="animal-section" class="mode-section" style="display: none;">
+      <h1>🐶 동물상 테스트</h1>
+      <p>웹캠을 통해 당신이 어떤 동물상인지 알아보세요!</p>
+      <button type="button" onclick="init()">웹캠 시작하기</button>
+      <div id="webcam-container"></div>
+      <div id="label-container"></div>
+    </div>
 
     <hr class="divider">
 
@@ -41,16 +61,7 @@
 
     <div id="disqus_thread"></div>
     <script>
-        /**
-        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-        /*
-        var disqus_config = function () {
-        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-        };
-        */
-        (function() { // DON'T EDIT BELOW THIS LINE
+        (function() {
         var d = document, s = d.createElement('script');
         s.src = 'https://testing-ohwpkk5uxn.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
