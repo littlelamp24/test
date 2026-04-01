@@ -170,34 +170,65 @@ button:hover {
 .gray { background: #d1d5db; }
 .green { background: #86efac; }
 
-/* Teachable Machine Styles */
-#webcam-container {
-  display: flex;
-  justify-content: center;
+/* Teachable Machine & Upload Styles */
+.upload-container {
   margin: 20px 0;
 }
 
-#webcam-container canvas {
-  border-radius: 14px;
-  border: 2px solid var(--set-border);
+.upload-btn {
+  display: inline-block;
+  background: var(--button-bg);
+  color: white;
+  padding: 14px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
 }
 
-#label-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.upload-btn:hover {
+  background: var(--button-hover);
 }
 
-.label-item {
+#image-preview-container {
+  margin: 20px auto;
+  max-width: 300px;
+}
+
+#face-image {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 4px solid white;
+}
+
+.result-message {
   background: var(--set-bg);
   border: 1px solid var(--set-border);
-  border-radius: 10px;
-  padding: 12px;
-  color: var(--set-title);
-  font-weight: bold;
-  text-align: left;
-  position: relative;
-  overflow: hidden;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 30px;
+  display: none;
+}
+
+.result-message h3 {
+  color: var(--text-primary);
+  margin-top: 0;
+}
+
+#animal-result-image-container {
+  display: flex;
+  justify-content: center;
+  margin-top: -10px;
+}
+
+#animal-result-image {
+  object-fit: cover;
+  width: 180px;
+  height: 180px;
+  transition: transform 0.3s ease;
+}
+
+#animal-result-image:hover {
+  transform: scale(1.05);
 }
 
 /* Form Styles */

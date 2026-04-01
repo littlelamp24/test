@@ -29,9 +29,21 @@
     <!-- 동물상 섹션 -->
     <div id="animal-section" class="mode-section" style="display: none;">
       <h1>🐶 동물상 테스트</h1>
-      <p>웹캠을 통해 당신이 어떤 동물상인지 알아보세요!</p>
-      <button type="button" onclick="init()">웹캠 시작하기</button>
-      <div id="webcam-container"></div>
+      <p>사진을 업로드하여 당신이 어떤 동물상인지 알아보세요!</p>
+      
+      <div class="upload-container">
+        <input type="file" id="image-upload" accept="image/*" onchange="handleFileUpload(event)" style="display: none;">
+        <label for="image-upload" class="upload-btn">📸 사진 선택하기</label>
+      </div>
+
+      <div id="image-preview-container" style="display: none;">
+        <img id="face-image" src="#" alt="Preview" style="max-width: 100%; border-radius: 14px; margin: 20px 0;">
+      </div>
+
+      <div id="result-message" class="result-message"></div>
+      <div id="animal-result-image-container" style="display: none; margin-bottom: 20px;">
+        <img id="animal-result-image" src="" alt="Animal Result" style="max-width: 200px; border-radius: 50%; border: 5px solid var(--button-bg); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+      </div>
       <div id="label-container"></div>
     </div>
 
